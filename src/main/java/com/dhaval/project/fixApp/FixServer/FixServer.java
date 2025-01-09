@@ -1,20 +1,26 @@
-package com.dhaval.project.FIX_Client_Server.FixServer;
+package com.dhaval.project.fixApp.FixServer;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
 import quickfix.*;
+
+import java.io.FileInputStream;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Slf4j
 @Component
 public class FixServer {
     private SocketAcceptor socketAcceptor;
 
+    private static final Logger log = LoggerFactory.getLogger(FixServer.class);
+
+
     @PostConstruct
     public void start() throws Exception {
-        SessionSettings settings = new SessionSettings("classpath:server.cfg");
+        SessionSettings settings = new SessionSettings(new FileInputStream("src/main/resources/server.cfg"));
         Application application = new FixServerApplication();
         MessageStoreFactory storeFactory = new FileStoreFactory(settings);
         LogFactory logFactory = new FileLogFactory(settings);

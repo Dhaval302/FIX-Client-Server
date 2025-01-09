@@ -1,7 +1,10 @@
-package com.dhaval.project.FIX_Client_Server.FixClient;
+package com.dhaval.project.fixApp.FixClient;
 
-import lombok.extern.slf4j.Slf4j;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
 import quickfix.*;
 
 import java.io.FileInputStream;
@@ -9,10 +12,11 @@ import java.io.FileInputStream;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Slf4j
 @Component
 public class FixClient {
     private SocketInitiator socketInitiator;
+
+    private static final Logger log = LoggerFactory.getLogger(FixClient.class);
 
     @PostConstruct
     public void start() throws Exception {

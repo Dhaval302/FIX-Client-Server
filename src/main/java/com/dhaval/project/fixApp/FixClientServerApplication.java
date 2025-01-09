@@ -1,4 +1,4 @@
-package com.dhaval.project.FIX_Client_Server;
+package com.dhaval.project.fixApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

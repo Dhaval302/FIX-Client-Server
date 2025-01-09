@@ -1,82 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <fix major="4" minor="4">
-  <header>
-    <!-- FIX version specification -->
-    <version>FIX.4.4</version>
-    <beginString>FIX.4.4</beginString>
-    <senderCompID>SenderCompID</senderCompID>
-    <targetCompID>TargetCompID</targetCompID>
-    <msgSeqNum>MsgSeqNum</msgSeqNum>
-    <message>HeartBeat</message>
-    <message>NewOrderSingle</message>
-    <message>ExecutionReport</message>
-    <message>Reject</message>
-    <message>Logout</message>
 
-    <!-- Standard header fields for message validation -->
-    <fields>
-      <field number="8" name="BeginString" type="String" required="Y"/>
-      <field number="35" name="MsgType" type="String" required="Y"/>
-      <field number="49" name="SenderCompID" type="String" required="Y"/>
-      <field number="56" name="TargetCompID" type="String" required="Y"/>
-      <field number="34" name="MsgSeqNum" type="Int" required="Y"/>
-      <field number="52" name="SendingTime" type="UTCTimestamp" required="Y"/>
-      <field number="10" name="CheckSum" type="String" required="Y"/>
-    </fields>
-  </header>
+<header>
+    <field number="8" name="BeginString" required="Y"/>
+    <field number="35" name="MsgType" required="Y"/>
+    <field number="49" name="SenderCompID" required="Y"/>
+    <field number="56" name="TargetCompID" required="Y"/>
+    <field number="34" name="MsgSeqNum" required="Y"/>
+    <field number="52" name="SendingTime" required="Y"/>
+</header>
 
-  <messages>
-    <!-- Heartbeat Message (35=0) -->
+
+  <fields>
+    <field number="8" name="BeginString" type="String"/>
+    <field number="35" name="MsgType" type="String"/>
+    <field number="49" name="SenderCompID" type="String"/>
+    <field number="56" name="TargetCompID" type="String"/>
+    <field number="34" name="MsgSeqNum" type="Int"/>
+    <field number="52" name="SendingTime" type="UTCTimestamp"/>
+    <field number="10" name="CheckSum" type="String"/>
+    <field number="11" name="ClOrdID" type="String"/>
+    <field number="54" name="Side" type="Char"/>
+    <field number="55" name="Symbol" type="String"/>
+    <field number="44" name="Price" type="Decimal"/>
+    <field number="32" name="OrderQty" type="Int"/>
+    <field number="39" name="OrdStatus" type="Char"/>
+    <field number="58" name="Text" type="String"/>
+  </fields>
+
+  
+<messages>
     <message name="Heartbeat" msgtype="0">
-      <field number="8" name="BeginString" type="String" required="Y"/>
-      <field number="35" name="MsgType" type="String" required="Y"/>
-      <field number="49" name="SenderCompID" type="String" required="Y"/>
-      <field number="56" name="TargetCompID" type="String" required="Y"/>
-      <field number="34" name="MsgSeqNum" type="Int" required="Y"/>
-      <field number="52" name="SendingTime" type="UTCTimestamp" required="Y"/>
-      <field number="10" name="CheckSum" type="String" required="Y"/>
+        <field number="34" name="MsgSeqNum" required="Y"/>
     </message>
-
-    <!-- New Order Single Message (35=D) -->
     <message name="NewOrderSingle" msgtype="D">
-      <field number="8" name="BeginString" type="String" required="Y"/>
-      <field number="35" name="MsgType" type="String" required="Y"/>
-      <field number="11" name="ClOrdID" type="String" required="Y"/>
-      <field number="54" name="Side" type="Char" required="Y"/>
-      <field number="55" name="Symbol" type="String" required="Y"/>
-      <field number="44" name="Price" type="Decimal" required="Y"/>
-      <field number="32" name="OrderQty" type="Int" required="Y"/>
-      <field number="39" name="OrdStatus" type="Char" required="N"/>
-      <field number="10" name="CheckSum" type="String" required="Y"/>
+        <field number="11" name="ClOrdID" required="Y"/>
+        <field number="54" name="Side" required="Y"/>
+        <field number="55" name="Symbol" required="Y"/>
+        <field number="44" name="Price" required="Y"/>
+        <field number="32" name="OrderQty" required="Y"/>
     </message>
-
-    <!-- Execution Report Message (35=8) -->
     <message name="ExecutionReport" msgtype="8">
-      <field number="8" name="BeginString" type="String" required="Y"/>
-      <field number="35" name="MsgType" type="String" required="Y"/>
-      <field number="11" name="ClOrdID" type="String" required="Y"/>
-      <field number="39" name="OrdStatus" type="Char" required="Y"/>
-      <field number="32" name="OrderQty" type="Int" required="Y"/>
-      <field number="55" name="Symbol" type="String" required="Y"/>
-      <field number="54" name="Side" type="Char" required="Y"/>
-      <field number="44" name="Price" type="Decimal" required="Y"/>
-      <field number="10" name="CheckSum" type="String" required="Y"/>
+        <field number="11" name="ClOrdID" required="Y"/>
+        <field number="39" name="OrdStatus" required="Y"/>
+        <field number="55" name="Symbol" required="Y"/>
+        <field number="54" name="Side" required="Y"/>
+        <field number="44" name="Price" required="Y"/>
+        <field number="32" name="OrderQty" required="Y"/>
     </message>
-
-    <!-- Reject Message (35=3) -->
     <message name="Reject" msgtype="3">
-      <field number="8" name="BeginString" type="String" required="Y"/>
-      <field number="35" name="MsgType" type="String" required="Y"/>
-      <field number="11" name="ClOrdID" type="String" required="Y"/>
-      <field number="39" name="OrdStatus" type="Char" required="Y"/>
-      <field number="58" name="Text" type="String" required="N"/>
-      <field number="10" name="CheckSum" type="String" required="Y"/>
+        <field number="11" name="ClOrdID" required="Y"/>
+        <field number="39" name="OrdStatus" required="Y"/>
+        <field number="58" name="Text" required="N"/>
     </message>
-  </messages>
+</messages>
 
-  <!-- Trailer section -->
-  <trailer>
-    <field number="10" name="CheckSum" type="String" required="Y"/>
-  </trailer>
+<trailer>
+    <field number="10" name="CheckSum" required="Y"/>
+</trailer>
 
 </fix>
