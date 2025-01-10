@@ -125,3 +125,19 @@ quickfix.SessionException: Tried to send a reject while not logged on: Invalid M
 	at java.base/java.lang.Thread.run(Thread.java:840)
 
 20250109-21:18:51: Disconnecting: Encountered END_OF_STREAM
+20250109-21:19:21: MINA session created: local=/127.0.0.1:59790, class org.apache.mina.transport.socket.nio.NioSocketSession, remote=/127.0.0.1:9876
+20250109-21:19:21: Initiated logon request
+20250109-21:19:21: Rejecting invalid message: quickfix.FieldException: Invalid MsgType, field=35: 8=FIX.4.49=11935=534=849=ServerCompID52=20250109-21:19:21.76956=ClientCompID58=Invalid Logon message: Invalid MsgType, field=3510=191
+20250109-21:19:21: Tried to send a reject while not logged on: Invalid MsgType, field=35
+quickfix.SessionException: Tried to send a reject while not logged on: Invalid MsgType, field=35
+	at quickfix.Session.generateReject(Session.java:1583)
+	at quickfix.Session.handleExceptionAndRejectMessage(Session.java:1199)
+	at quickfix.Session.next(Session.java:1081)
+	at quickfix.Session.next(Session.java:1228)
+	at quickfix.mina.SingleThreadedEventHandlingStrategy$SessionMessageEvent.processMessage(SingleThreadedEventHandlingStrategy.java:163)
+	at quickfix.mina.SingleThreadedEventHandlingStrategy.block(SingleThreadedEventHandlingStrategy.java:113)
+	at quickfix.mina.SingleThreadedEventHandlingStrategy.lambda$blockInThread$1(SingleThreadedEventHandlingStrategy.java:145)
+	at quickfix.mina.SingleThreadedEventHandlingStrategy$ThreadAdapter$RunnableWrapper.run(SingleThreadedEventHandlingStrategy.java:267)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+20250109-21:19:21: Disconnecting: Encountered END_OF_STREAM
